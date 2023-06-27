@@ -19,4 +19,24 @@
   <%= submit_tag("Submit")%>
 <% end %>-->
 
+<%= form_with model: @user do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label "Username: "%>
+  <%= form.text_field :username, placeholder: "John_doe" %><br><br>
+  <%= form.label "Email: "%>
+  <%= form.email_field :email, placeholder: "example@eg.com" %><br><br>
+  <%= form.label "Password: "%>
+  <%= form.password_field :password, placeholder: "abcd1234@" %><br><br>
+  <%= form.submit value:  "Submit" %>
+<% end %>
